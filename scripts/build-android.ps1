@@ -36,8 +36,13 @@ try {
     & $capacitorCli sync android
     if ($LASTEXITCODE -ne 0) { throw 'Capacitor Android sync failed.' }
 
-    & $gradleWrapper assembleDebug
-    if ($LASTEXITCODE -ne 0) { throw 'Android debug APK build failed.' }
+    Push-Location (Join-Path $clientRoot 'android')
+    try {
+      & $gradleWrapper assembleDebug
+      if ($LASTEXITCODE -ne 0) { throw 'Android debug APK build failed.' }
+    } finally {
+      Pop-Location
+    }
   } finally {
     Pop-Location
   }

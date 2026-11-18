@@ -1,0 +1,16 @@
+node_modules
+dist
+.env
+.env.*.local
+.DS_Store
+work/
+client/android/local.properties
+client/android/.gradle/
+client/android/app/build/
+*.keystore
+*.jks
+outputs/
+**/build/
+*.tsbuildinfo
+client/android/app/src/main/assets/public/
+client/android/app/src/main/assets/capacitor.config.json

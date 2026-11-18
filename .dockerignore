@@ -1,0 +1,7 @@
+node_modules
+client
+outputs
+work
+**/dist
+**/.env
+**/.env.*.local

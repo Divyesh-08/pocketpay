@@ -1,0 +1,11 @@
+{
+  "name": "pocketpay",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "node scripts/run-dev.mjs",
+    "dev:mobile": "node scripts/run-dev.mjs --mobile",
+    "build": "npm run build --prefix server && npm run build --prefix client",
+    "start": "npm run start -w server"
+  }
+}

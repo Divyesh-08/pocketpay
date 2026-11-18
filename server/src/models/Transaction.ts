@@ -1,0 +1,3 @@
+import mongoose, { Schema } from 'mongoose';
+const TransactionSchema = new Schema({ reference:{type:String,required:true,unique:true,index:true}, idempotencyKey:{type:String,required:true,unique:true,index:true}, senderId:{type:Schema.Types.ObjectId,ref:'User',required:true,index:true}, receiverId:{type:Schema.Types.ObjectId,ref:'User',required:true,index:true}, amount:{type:Number,required:true,min:1}, description:{type:String,default:'',maxlength:120}, status:{type:String,enum:['completed','reversed'],default:'completed'}, createdAt:{type:Date,default:Date.now} });
+export const Transaction = mongoose.model('Transaction',TransactionSchema);

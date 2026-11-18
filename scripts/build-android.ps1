@@ -31,7 +31,9 @@ try {
     npm.cmd run build
     if ($LASTEXITCODE -ne 0) { throw 'Web app build failed.' }
 
-    npx.cmd cap sync android
+    $capacitorCli = Join-Path $clientRoot 'node_modules\.bin\cap.cmd'
+    if (-not (Test-Path $capacitorCli)) { throw "Capacitor CLI not found: $capacitorCli" }
+    & $capacitorCli sync android
     if ($LASTEXITCODE -ne 0) { throw 'Capacitor Android sync failed.' }
 
     & $gradleWrapper assembleDebug

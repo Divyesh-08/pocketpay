@@ -45,8 +45,7 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
   if (err instanceof mongoose.Error.ValidationError) return res.status(400).json({ error: 'Please check the information you entered' });
   if (err?.name === 'ZodError') return res.status(400).json({ error: err.issues?.[0]?.message || 'Invalid request' });
   if (err?.code === 11000) return res.status(409).json({ error: 'This account or payment request already exists' });
-  const errorMessage = String(err?.message || '').replace(/mongodb(?:\\+srv)?:\\/\\/[^@\\s]+@/gi, 'mongodb://[redacted]@').slice(0, 240);
-  console.error('[api:error]', { name: err?.name, code: err?.code, codeName: err?.codeName, status: err?.status, message: errorMessage });
+  console.error('[api:error]', { name: err?.name, code: err?.code, codeName: err?.codeName, status: err?.status });
   res.status(err.status || 500).json({ error: err.status ? err.message : 'Something went wrong. Please try again.' });
 });
 
